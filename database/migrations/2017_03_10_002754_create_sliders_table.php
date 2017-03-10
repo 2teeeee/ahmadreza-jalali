@@ -14,7 +14,14 @@ class CreateSlidersTable extends Migration {
 	{
 		Schema::create('sliders', function(Blueprint $table)
 		{
+		    $table->engine = 'InnoDB';
 			$table->increments('id');
+			$table->string('title',200);
+			$table->text('text')->nullable();
+			$table->string('image',200);
+			$table->tinyInteger('status')->default(1);
+			$table->integer('displayindex')->dafault(1);
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

@@ -14,7 +14,15 @@ class CreateMenusTable extends Migration {
 	{
 		Schema::create('menus', function(Blueprint $table)
 		{
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+			$table->string('title',200);
+			$table->tinyInteger('status')->default(1);
+			$table->integer('menu_id')->nullable();
+			$table->string('icon',200)->nullable();
+			$table->string('link',250)->nullable();
+			$table->integer('displayindex')->default(1);
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

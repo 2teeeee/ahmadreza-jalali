@@ -14,7 +14,15 @@ class CreateWorksTable extends Migration {
 	{
 		Schema::create('works', function(Blueprint $table)
 		{
+			$table->engine = 'InnoDB';
 			$table->increments('id');
+			$table->string('title',200);
+			$table->string('image',200)->nullable();
+			$table->text('text')->nullable();
+			$table->string('keyword',200)->nullable();
+			$table->text('description')->nullable();
+			$table->tinyInteger('status')->default(0);
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

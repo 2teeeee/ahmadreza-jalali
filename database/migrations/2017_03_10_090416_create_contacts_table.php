@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration {
+class CreateContactsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,17 +12,17 @@ class CreatePagesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pages', function(Blueprint $table)
+		Schema::create('contacts', function(Blueprint $table)
 		{
-			$table->engine = 'InnoDB';
+		    $table->engine = 'InnoDb';
 			$table->increments('id');
-			$table->string('title',200);
-			$table->text('liitletext')->nullable();
-			$table->longText('text')->nullable();
+			$table->string('name',200);
+			$table->string('email',200);
+			$table->string('mobile',11);
+			$table->string('subject',250);
+			$table->text('text');
 			$table->tinyInteger('status')->default(1);
-			$table->string('titleurl',100)->nullable();
-			$table->string('keyword',200)->mullable();
-			$table->text('description')->nullable();
+			$table->string('ip',50);
 			$table->softDeletes();
 			$table->timestamps();
 		});
@@ -35,7 +35,7 @@ class CreatePagesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pages');
+		Schema::drop('contacts');
 	}
 
 }

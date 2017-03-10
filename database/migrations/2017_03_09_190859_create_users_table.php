@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTable extends Migration {
+class CreateUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,32 +12,23 @@ class CreateUserTable extends Migration {
 	 */
 	public function up()
 	{
-		if(Schema::hasTable('user'))
+		Schema::create('users', function(Blueprint $table)
 		{
-			
-		}
-		else
-		{
-			Schema::create('user', function(Blueprint $table)
-			{
-				$table->engine = 'InnoDB';
+			$table->engine = 'InnoDB';
 
-				$table->increments('id');
-				$table->String('name',100)->nullable();
-				$table->string('family',100)->nullable();
-				$table->string('username',100)->unique();
-				$table->string('password',64);
-				$table->boolean('status')->default(1);
-				$table->datetime('registertime');
-				$table->string('email',200)->unique();
-				$table->string('mobile',20)->nullable()->unique();
-				$table->string('avatar',200)->nullabe();
-				$table->softDeletes();
-				$table->timestamps();
-				$table->rememberToken();
-			});
-		}
-		
+			$table->increments('id');
+			$table->String('name',100)->nullable();
+			$table->string('family',100)->nullable();
+			$table->string('username',100)->unique();
+			$table->string('password',64);
+			$table->boolean('status')->default(1);
+			$table->string('email',200)->unique();
+			$table->string('mobile',20)->unique();
+			$table->string('avatar',200)->nullabe();
+			$table->softDeletes();
+			$table->timestamps();
+			$table->rememberToken();
+		});
 	}
 
 	/**
@@ -47,7 +38,7 @@ class CreateUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('user');
+		Schema::drop('users');
 	}
 
 }
